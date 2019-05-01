@@ -10,7 +10,10 @@ namespace PersonaCal
     {
         public override string ToString()
         {
-            return string.Format("{0,-15}\t{1,-15}\t{2,-15}", Arcana, Name, Level);
+            if (Arcana.Id == 1002)
+                return string.Format("Fusion not possible");
+            else
+                return string.Format("{0,-13}\t{1,-15}\t{2,-15}", Arcana, Name, Level);
         }
     }
 }

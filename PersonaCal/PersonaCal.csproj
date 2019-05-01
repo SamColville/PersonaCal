@@ -90,6 +90,7 @@
     <Compile Include="Arcana.cs">
       <DependentUpon>Personas.tt</DependentUpon>
     </Compile>
+    <Compile Include="FusionResult.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
