@@ -20,9 +20,15 @@ namespace PersonaCal
     /// </summary>
     public partial class MainWindow : Window
     {
+        public PersonasContainers db = new PersonasContainers();
+
         public MainWindow()
         {
             InitializeComponent();
+            var personaOneList = db.Personas.ToList();
+            lbxPersonaOne.ItemsSource = personaOneList;
+            lbxPersonaTwo.ItemsSource = personaOneList;
+
         }
     }
 }
