@@ -15,16 +15,16 @@ using System.Windows.Shapes;
 namespace PersonaCal
 {
     /// <summary>
-    /// Interaction logic for SearchWindow.xaml
+    /// Interaction logic for BuildWindow.xaml
     /// </summary>
-    public partial class SearchWindow : Window
+    public partial class BuildWindow : Window
     {
-        public SearchWindow()
+        public BuildWindow()
         {
             InitializeComponent();
         }
 
-        private void BtnSearch_Click(object sender, RoutedEventArgs e)
+        private void BtnHome_Click(object sender, RoutedEventArgs e)
         {
 
         }
@@ -34,7 +34,7 @@ namespace PersonaCal
 
         }
 
-        private void BtnHome_Click(object sender, RoutedEventArgs e)
+        private void BtnSearch_Click(object sender, RoutedEventArgs e)
         {
 
         }

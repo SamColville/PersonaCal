@@ -82,9 +82,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BuildWindow.xaml.cs">
+      <DependentUpon>BuildWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SearchWindow.xaml.cs">
       <DependentUpon>SearchWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="BuildWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CalculateWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -151,7 +158,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="bin\Debug\FusionResult.json" />
     <None Include="packages.config" />
     <EntityDeploy Include="Personas.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -206,6 +212,8 @@
       <DependentUpon>Personas.mdf</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
