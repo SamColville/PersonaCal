@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace PersonaCal
 {
-    class FusionResult
+    public class FusionResult
     {
-        public PersonasContainers DB { get; set; }
+        public PersonasContainers DB { get; set; } = new PersonasContainers();
         //public Arcana[] Arcanas { get; set; }
         public Persona Parent1 { get; set; }
         public Persona Parent2 { get; set; }
@@ -46,18 +46,19 @@ namespace PersonaCal
 
         public Persona CheckPersonaResult(Persona p1, Persona p2)
         {
-            var arcanaQuery = DB.Personas.Where(p => p.Arcana == CheckArcana(p1, p2));
+            Arcana ResultArc = CheckArcana(p1, p2);
+            var arcanaQuery = DB.Personas.Where(p => p.Arcana.Id == ResultArc.Id);
             double levelAverage = Math.Ceiling((double)(p1.Level + p2.Level) / 2);
 
             
-            Persona Result = arcanaQuery.Where(p => p.Level >= levelAverage).First();
+            var Result = arcanaQuery.Where(p => p.Level >= levelAverage).First();
             
-            return Result;
+            return Result as Persona;
         }
 
         public Arcana CheckArcana(Persona p1, Persona p2)
         {
-            int resultKey = ResultKeys[p1.Arcana.Id, p2.Arcana.Id];
+            int resultKey = ResultKeys[(p1.Arcana.Id - 1), (p2.Arcana.Id - 1)];
             if (resultKey == 0)
             {
                 return DB.Arcanas.Where(k => k.Id == 1002).First();

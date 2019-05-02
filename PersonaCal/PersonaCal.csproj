@@ -56,6 +56,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -79,6 +82,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="SearchWindow.xaml.cs">
+      <DependentUpon>SearchWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="CalculateWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -90,11 +100,18 @@
     <Compile Include="Arcana.cs">
       <DependentUpon>Personas.tt</DependentUpon>
     </Compile>
+    <Compile Include="CalculateWindow.xaml.cs">
+      <DependentUpon>CalculateWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FusionResult.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SearchWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Partial Classes\Arcana.cs" />
@@ -134,6 +151,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="bin\Debug\FusionResult.json" />
     <None Include="packages.config" />
     <EntityDeploy Include="Personas.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -166,6 +184,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\jackFrost.png" />
+    <Resource Include="Images\P4-Izanagi.jpg" />
+    <Resource Include="Images\Persona_4_Logo.png" />
+    <Resource Include="Images\persona_4_Main.jpg" />
     <Content Include="Personas.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Personas.edmx</DependentUpon>
@@ -184,5 +206,6 @@
       <DependentUpon>Personas.mdf</DependentUpon>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
