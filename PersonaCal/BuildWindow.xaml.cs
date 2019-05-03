@@ -34,6 +34,8 @@ namespace PersonaCal
             masterList = db.Personas.ToList();
             lbxTeamSelect.ItemsSource = masterList;
             teamList = new List<Persona>();
+            cbxSearchType.ItemsSource = MainWindow.sortBy;
+            cbxSearchType.SelectedIndex = 0;
         }
 
         private void BtnHome_Click(object sender, RoutedEventArgs e)
@@ -124,6 +126,7 @@ namespace PersonaCal
                 using (StreamReader sr = new StreamReader(fileName))
                 {
                     string json = sr.ReadToEnd();
+                    teamList.Clear();
                     teamList = JsonConvert.DeserializeObject<List<Persona>>(json);
                 }
             }
@@ -133,10 +136,26 @@ namespace PersonaCal
 
         private void TbxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            lbxTeamSelect.ItemsSource = null;
-            string search = tbxSearch.Text.ToLower();            
-            var filterList = masterList.Where(p => p.Name.ToLower().Contains(search));
-            lbxTeamSelect.ItemsSource = filterList.ToList();
+            if (cbxSearchType.SelectedIndex == 0)
+            {
+                lbxTeamSelect.ItemsSource = null;
+                string search = tbxSearch.Text.ToLower();
+                var filterList = masterList.Where(p => p.Name.ToLower().Contains(search));
+                lbxTeamSelect.ItemsSource = filterList.ToList();
+            }
+            else if (cbxSearchType.SelectedIndex == 1)
+            {
+                lbxTeamSelect.ItemsSource = null;
+                string search = tbxSearch.Text.ToLower();
+                var filterList = masterList.Where(p => p.Arcana.ArcanaName.ToLower().Contains(search));
+                lbxTeamSelect.ItemsSource = filterList.ToList();
+            }
+        }
+
+        private void CbxSearchType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            tbxSearch.Clear();
+
         }
     }
 }

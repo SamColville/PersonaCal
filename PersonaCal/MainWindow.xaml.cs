@@ -23,8 +23,8 @@ namespace PersonaCal
     public partial class MainWindow : Window
     {
         public PersonasContainers db = new PersonasContainers();
-        //string placeHoldText;
-        //string errorText;
+        public static string[] sortBy = { "Name", "Arcana" };
+
         public static int[,] ResultKeys = new int[,]
         {
             {1,15,14,19,14,8,4,20,2,12,2,2,12,10,6,15,18,4,5,16,13},

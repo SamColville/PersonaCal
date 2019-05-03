@@ -34,6 +34,12 @@ namespace PersonaCal
             placeHoldText = "Press CALCULATE after selecting\n1. 1 Persona from column 1\n2. Persona from Column 2";
             errorText = "Please select two Personas: \n1. 1 Persona from column 1\n2. Persona from Column 2";
             tbkResult.Text = placeHoldText;
+            
+            cbxSearchOne.ItemsSource = MainWindow.sortBy;
+            cbxSearchTwo.ItemsSource = MainWindow.sortBy;
+            cbxSearchOne.SelectedIndex = 0;
+            cbxSearchTwo.SelectedIndex = 0;
+
         }
 
         private void BtnCalculate_Click(object sender, RoutedEventArgs e)
@@ -79,18 +85,50 @@ namespace PersonaCal
 
         private void TbxSearchOne_TextChanged(object sender, TextChangedEventArgs e)
         {
-            lbxPersonaOne.ItemsSource = null;
-            string search = tbxSearchOne.Text.ToLower();
-            var filterList = masterList.Where(p => p.Name.ToLower().Contains(search));
-            lbxPersonaOne.ItemsSource = filterList.ToList();
+            if (cbxSearchOne.SelectedIndex == 0)
+            {
+                lbxPersonaOne.ItemsSource = null;
+                string search = tbxSearchOne.Text.ToLower();
+                var filterList = masterList.Where(p => p.Name.ToLower().Contains(search));
+                lbxPersonaOne.ItemsSource = filterList.ToList();
+            }
+            else if (cbxSearchOne.SelectedIndex == 1)
+            {
+                lbxPersonaOne.ItemsSource = null;
+                string search = tbxSearchOne.Text.ToLower();
+                var filterList = masterList.Where(p => p.Arcana.ArcanaName.ToLower().Contains(search));
+                lbxPersonaOne.ItemsSource = filterList.ToList();
+
+            }
         }
 
         private void TbxSearchTwo_TextChanged(object sender, TextChangedEventArgs e)
         {
-            lbxPersonaTwo.ItemsSource = null;
-            string search = tbxSearchTwo.Text.ToLower();
-            var filterList = masterList.Where(p => p.Name.ToLower().Contains(search));
-            lbxPersonaTwo.ItemsSource = filterList.ToList();
+            if (cbxSearchTwo.SelectedIndex == 0)
+            {
+                lbxPersonaTwo.ItemsSource = null;
+                string search = tbxSearchTwo.Text.ToLower();
+                var filterList = masterList.Where(p => p.Name.ToLower().Contains(search));
+                lbxPersonaTwo.ItemsSource = filterList.ToList();
+            }
+            else if (cbxSearchTwo.SelectedIndex == 1)
+            {
+                lbxPersonaTwo.ItemsSource = null;
+                string search = tbxSearchTwo.Text.ToLower();
+                var filterList = masterList.Where(p => p.Arcana.ArcanaName.ToLower().Contains(search));
+                lbxPersonaTwo.ItemsSource = filterList.ToList();
+
+            }
+        }
+
+        private void CbxSearchOne_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            tbxSearchOne.Clear();
+        }
+
+        private void CbxSearchTwo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            tbxSearchTwo.Clear();
         }
     }
 }

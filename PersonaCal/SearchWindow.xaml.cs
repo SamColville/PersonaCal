@@ -28,6 +28,8 @@ namespace PersonaCal
             InitializeComponent();
             masterList = db.Personas.ToList();
             lbxChild.ItemsSource = masterList;
+            cbxSearchType.ItemsSource = MainWindow.sortBy;
+            cbxSearchType.SelectedIndex = 0;
         }
 
         private void BtnSearch_Click(object sender, RoutedEventArgs e)
@@ -82,10 +84,28 @@ namespace PersonaCal
 
         private void TbxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if(cbxSearchType.SelectedIndex == 0)
+            {
+                lbxChild.ItemsSource = null;
+                string search = tbxSearch.Text.ToLower();
+                var filterList = masterList.Where(p => p.Name.ToLower().Contains(search));
+                lbxChild.ItemsSource = filterList.ToList();
+            }
+            else if(cbxSearchType.SelectedIndex == 1)
+            {
+                lbxChild.ItemsSource = null;
+                string search = tbxSearch.Text.ToLower();
+                var filterList = masterList.Where(p => p.Arcana.ArcanaName.ToLower().Contains(search));
+                lbxChild.ItemsSource = filterList.ToList();
+
+            }
+        }
+
+        private void CbxSearchType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
             lbxChild.ItemsSource = null;
-            string search = tbxSearch.Text.ToLower();
-            var filterList = masterList.Where(p => p.Name.ToLower().Contains(search));
-            lbxChild.ItemsSource = filterList.ToList();
+            lbxChild.ItemsSource = masterList;
+            tbxSearch.Clear();
         }
     }
 }

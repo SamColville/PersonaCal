@@ -34,14 +34,47 @@
         <Button Name="btnHome" Grid.Column="5" Grid.Row="0" Background="Crimson" Margin="10" 
                 FontSize="12" FontWeight="SemiBold" Click="BtnHome_Click" Height="40">HOME</Button>
 
-        <TextBox Name="tbxSearchOne" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Height="25"
+        <ComboBox Name="cbxSearchOne" Grid.Column="0" Grid.Row="1" Height="25" Margin="5" 
+                  SelectionChanged="CbxSearchOne_SelectionChanged"/>
+        <TextBox Name="tbxSearchOne" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Height="25"
                  Margin="5" TextChanged="TbxSearchOne_TextChanged"/>
-        <TextBox Name="tbxSearchTwo" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Height="25"
+        
+        <ComboBox Name="cbxSearchTwo" Grid.Column="2" Grid.Row="1" Height="25" Margin="5" 
+                  SelectionChanged="CbxSearchTwo_SelectionChanged"/>
+        <TextBox Name="tbxSearchTwo" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="1" Height="25"
                  Margin="5" TextChanged="TbxSearchTwo_TextChanged"/>
         <ListBox Name="lbxPersonaOne" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2" Background="Black"
-                 Margin="5" Foreground="White"/>
+                 Margin="5" Foreground="White">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                                    VerticalAlignment="Center">
+                        <TextBlock Text="{Binding Path=Arcana.ArcanaName}"
+                                       HorizontalAlignment="Left" Width="75"/>
+                        <TextBlock Text="{Binding Path=Name}"
+                                       HorizontalAlignment="Left" Width="120"/>
+                        <TextBlock Text="{Binding Path=Level}"
+                                       HorizontalAlignment="Left" Width="20"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <ListBox Name="lbxPersonaTwo" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2" Background="Black"
-                 Margin="5" Foreground="White"/>
+                 Margin="5" Foreground="White">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                                    VerticalAlignment="Center">
+                        <TextBlock Text="{Binding Path=Arcana.ArcanaName}"
+                                       HorizontalAlignment="Left" Width="75"/>
+                        <TextBlock Text="{Binding Path=Name}"
+                                       HorizontalAlignment="Left" Width="120"/>
+                        <TextBlock Text="{Binding Path=Level}"
+                                       HorizontalAlignment="Left" Width="20"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <Button Name="btnCalculate" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="1"
                 HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="25"
                 Content="CALCULATE" Click="BtnCalculate_Click"  Background="Orange" />
