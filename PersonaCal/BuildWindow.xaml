@@ -32,9 +32,22 @@
         <Button Name="btnCalc" Grid.Column="4" Grid.Row="0" Background="Crimson" Margin="10" 
                 FontSize="12" FontWeight="SemiBold" Click="BtnCalc_Click" Height="40">CALCULATOR</Button>
         <Button Name="btnHome" Grid.Column="5" Grid.Row="0" Background="Crimson" Margin="10" 
-                FontSize="12" FontWeight="SemiBold" Click="BtnHome_Click" Height="40">EXIT</Button>
+                FontSize="12" FontWeight="SemiBold" Click="BtnHome_Click" Height="40">HOME</Button>
 
+        <TextBox Name="tbxSearch" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Height="25"
+                 Margin="5" TextChanged="TbxSearch_TextChanged"/>
         <ListBox Name="lbxTeamSelect" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="2"
                  Margin="5" Background="Black" Foreground="White"/>
+        <Button Name="btnAdd" Grid.Column="2" Grid.Row="2" FontSize="20"
+                Height="50" Width="100" Click="BtnAdd_Click">Add >></Button>
+        <Button Name="btnRemove" Grid.Column="2" Grid.Row="3" FontSize="20"
+                Height="50" Width="100" Click="BtnRemove_Click">Remove</Button>
+        <ListBox Name="lbxTeam" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="2"
+                 Margin="5" Background="Black" Foreground="White"/>
+        <Button Name="btnSave" Grid.Column="5" Grid.Row="2" FontSize="20"
+                Height="50" Width="100" Click="BtnSave_Click">SAVE</Button>
+        <Button Name="btnLoad" Grid.Column="5" Grid.Row="3" FontSize="20"
+                Height="50" Width="100" Click="BtnLoad_Click">LOAD</Button>
+
     </Grid>
 </Window>

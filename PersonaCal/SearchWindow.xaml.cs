@@ -21,12 +21,13 @@ namespace PersonaCal
     {
         List<Persona[]> Resutls = new List<Persona[]>();
         public PersonasContainers db = new PersonasContainers();
+        List<Persona> masterList;
 
         public SearchWindow()
         {
             InitializeComponent();
-            List<Persona> personaOneList = db.Personas.ToList();
-            lbxChild.ItemsSource = personaOneList;
+            masterList = db.Personas.ToList();
+            lbxChild.ItemsSource = masterList;
         }
 
         private void BtnSearch_Click(object sender, RoutedEventArgs e)
@@ -77,6 +78,14 @@ namespace PersonaCal
         private void BtnClear_Click(object sender, RoutedEventArgs e)
         {
             lbxResults.ItemsSource = null;
+        }
+
+        private void TbxSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            lbxChild.ItemsSource = null;
+            string search = tbxSearch.Text.ToLower();
+            var filterList = masterList.Where(p => p.Name.ToLower().Contains(search));
+            lbxChild.ItemsSource = filterList.ToList();
         }
     }
 }

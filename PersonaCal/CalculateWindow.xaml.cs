@@ -21,15 +21,16 @@ namespace PersonaCal
     public partial class CalculateWindow : Window
     {
         public PersonasContainers db = new PersonasContainers();
+        public List<Persona> masterList;
         string placeHoldText;
         string errorText;
 
         public CalculateWindow()
         {
             InitializeComponent();
-            List<Persona> personaOneList = db.Personas.ToList();
-            lbxPersonaOne.ItemsSource = personaOneList;
-            lbxPersonaTwo.ItemsSource = personaOneList;
+            masterList = db.Personas.ToList();
+            lbxPersonaOne.ItemsSource = masterList;
+            lbxPersonaTwo.ItemsSource = masterList;
             placeHoldText = "Press CALCULATE after selecting\n1. 1 Persona from column 1\n2. Persona from Column 2";
             errorText = "Please select two Personas: \n1. 1 Persona from column 1\n2. Persona from Column 2";
             tbkResult.Text = placeHoldText;
@@ -47,8 +48,9 @@ namespace PersonaCal
                 Result = Fusion.CheckPersonaResult();
                 tbkResult.Text = Result.ToString();
             }
-            else
-                tbkResult.Text = errorText;
+            else //ADD SHOWDIALOG
+                MessageBox.Show(errorText, "Fusion Calculator", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+
 
         }
 
@@ -73,6 +75,22 @@ namespace PersonaCal
             BuildWindow build = new BuildWindow();
             this.Close();
             build.ShowDialog();
+        }
+
+        private void TbxSearchOne_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            lbxPersonaOne.ItemsSource = null;
+            string search = tbxSearchOne.Text.ToLower();
+            var filterList = masterList.Where(p => p.Name.ToLower().Contains(search));
+            lbxPersonaOne.ItemsSource = filterList.ToList();
+        }
+
+        private void TbxSearchTwo_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            lbxPersonaTwo.ItemsSource = null;
+            string search = tbxSearchTwo.Text.ToLower();
+            var filterList = masterList.Where(p => p.Name.ToLower().Contains(search));
+            lbxPersonaTwo.ItemsSource = filterList.ToList();
         }
     }
 }

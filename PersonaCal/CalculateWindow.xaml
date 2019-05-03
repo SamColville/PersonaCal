@@ -33,6 +33,11 @@
                 FontSize="12" FontWeight="SemiBold" Height="40">CALCULATOR</Button>
         <Button Name="btnHome" Grid.Column="5" Grid.Row="0" Background="Crimson" Margin="10" 
                 FontSize="12" FontWeight="SemiBold" Click="BtnHome_Click" Height="40">HOME</Button>
+
+        <TextBox Name="tbxSearchOne" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Height="25"
+                 Margin="5" TextChanged="TbxSearchOne_TextChanged"/>
+        <TextBox Name="tbxSearchTwo" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Height="25"
+                 Margin="5" TextChanged="TbxSearchTwo_TextChanged"/>
         <ListBox Name="lbxPersonaOne" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2" Background="Black"
                  Margin="5" Foreground="White"/>
         <ListBox Name="lbxPersonaTwo" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2" Background="Black"
