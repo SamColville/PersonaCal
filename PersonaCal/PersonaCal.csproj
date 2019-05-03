@@ -85,6 +85,7 @@
     <Compile Include="BuildWindow.xaml.cs">
       <DependentUpon>BuildWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SearchResult.cs" />
     <Compile Include="SearchWindow.xaml.cs">
       <DependentUpon>SearchWindow.xaml</DependentUpon>
     </Compile>

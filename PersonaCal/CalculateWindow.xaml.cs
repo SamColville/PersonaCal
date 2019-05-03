@@ -44,7 +44,7 @@ namespace PersonaCal
             if (lbxPersonaOne.SelectedItem != null && lbxPersonaTwo.SelectedItem != null)
             {
                 Fusion = new FusionResult(p1, p2);
-                Result = Fusion.CheckPersonaResult(p1, p2);
+                Result = Fusion.CheckPersonaResult();
                 tbkResult.Text = Result.ToString();
             }
             else
@@ -69,7 +69,10 @@ namespace PersonaCal
 
         private void BtnBuild_Click(object sender, RoutedEventArgs e)
         {
-
+            MainWindow main = Owner as MainWindow;
+            BuildWindow build = new BuildWindow();
+            this.Close();
+            build.ShowDialog();
         }
     }
 }

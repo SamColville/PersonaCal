@@ -22,7 +22,7 @@ namespace PersonaCal
     /// </summary>
     public partial class MainWindow : Window
     {
-        //public PersonasContainers db = new PersonasContainers();
+        public PersonasContainers db = new PersonasContainers();
         //string placeHoldText;
         //string errorText;
         public static int[,] ResultKeys = new int[,]
