@@ -8,6 +8,7 @@
         Background="Gold"
         Top="100" Left="100"
         Title="BuildWindow" Height="450" Width="800">
+    <!-- #region GRID DEFINITIONS -->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1.5*"/>
@@ -23,6 +24,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        <!-- #endregion -->
         <Image Source="Images/Persona_4_Logo.png" Grid.Column="0" Grid.Row="0"/>
         <TextBlock Grid.Column="1" FontSize="25" TextAlignment="Center">Fusion <LineBreak/>Calculator</TextBlock>
         <Button Name="btnBuild" Grid.Column="2" Grid.Row="0" Background="Crimson" Margin="10" 

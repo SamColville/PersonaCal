@@ -18,9 +18,6 @@ using System.Windows.Shapes;
 
 namespace PersonaCal
 {
-    /// <summary>
-    /// Interaction logic for BuildWindow.xaml
-    /// </summary>
     public partial class BuildWindow : Window
     {
         public PersonasContainers db = new PersonasContainers();
@@ -38,6 +35,7 @@ namespace PersonaCal
             cbxSearchType.SelectedIndex = 0;
         }
 
+        #region NAV BUTTONS
         private void BtnHome_Click(object sender, RoutedEventArgs e)
         {
             MainWindow main = Owner as MainWindow;
@@ -64,14 +62,19 @@ namespace PersonaCal
         {
             //No action
         }
+        #endregion NAV BUTTONS
 
+        #region ADD/REMOVE BUTTONS
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
+            //Check selection is not null
             if(lbxTeamSelect.SelectedItem != null)
             {
+                //Max of 8 personas in a team
                 if(teamList.Count < 8)
                 {
                     teamList.Add(lbxTeamSelect.SelectedItem as Persona);
+                    //displays selected personas in listbox
                     lbxTeam.ItemsSource = null;
                     lbxTeam.ItemsSource = teamList;
                 }
@@ -85,6 +88,7 @@ namespace PersonaCal
 
         private void BtnRemove_Click(object sender, RoutedEventArgs e)
         {
+            //Remove a persona from team
             if(lbxTeam.SelectedItem != null)
             {
                 teamList.Remove(lbxTeam.SelectedItem as Persona);
@@ -92,24 +96,32 @@ namespace PersonaCal
                 lbxTeam.ItemsSource = teamList;
             }
         }
+        #endregion NAV BUTTONS
 
+        #region SAVE/LOAD BUTTONS
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            string json = JsonConvert.SerializeObject(teamList, Formatting.Indented, 
-                                                        new JsonSerializerSettings()
-                                                        {
-                                                            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                                                        });
+            string json = JsonConvert.SerializeObject(
+                                                    teamList, Formatting.Indented, 
+                                                    new JsonSerializerSettings()
+                                                    {
+                                                        //Since arcana is an object that Persona has
+                                                        //ignore looping when writing. Does not affect loading
+                                                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                                                    });
+
+            //Choose where to save team file, save as .json by default
             SaveFileDialog sfd = new SaveFileDialog
             {
                 DefaultExt = ".json"
             };
             bool? result = sfd.ShowDialog();
 
+
             if (result == true)
             {
+                //Save persona info to json file
                 string filename = sfd.FileName;
-                //json = JsonConvert.SerializeObject(movieList, Formatting.Indented);
                 using (StreamWriter sw = new StreamWriter(filename))
                 {
                     sw.Write(json);
@@ -119,6 +131,7 @@ namespace PersonaCal
 
         private void BtnLoad_Click(object sender, RoutedEventArgs e)
         {
+            //Choose file to load
             OpenFileDialog ofd = new OpenFileDialog();
             if (ofd.ShowDialog() == true)
             {
@@ -130,12 +143,16 @@ namespace PersonaCal
                     teamList = JsonConvert.DeserializeObject<List<Persona>>(json);
                 }
             }
+            //reset team listbox 
             lbxTeam.ItemsSource = null;
             lbxTeam.ItemsSource = teamList;
         }
+        #endregion
 
+        #region SEARCH LOGIC
         private void TbxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
+            //Search etiher by name or ny arcana. Name by default
             if (cbxSearchType.SelectedIndex == 0)
             {
                 lbxTeamSelect.ItemsSource = null;
@@ -157,5 +174,6 @@ namespace PersonaCal
             tbxSearch.Clear();
 
         }
+        #endregion
     }
 }

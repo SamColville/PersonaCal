@@ -32,6 +32,7 @@ namespace PersonaCal
             cbxSearchType.SelectedIndex = 0;
         }
 
+        #region NAV BUTTONS
         private void BtnSearch_Click(object sender, RoutedEventArgs e)
         {
             MainWindow main = Owner as MainWindow;
@@ -61,7 +62,9 @@ namespace PersonaCal
             this.Close();
             build.ShowDialog();
         }
+        #endregion NAV BUTTONS
 
+        #region FIND LOGIC
         private void BtnFind_Click(object sender, RoutedEventArgs e)
         {
             lbxResults.ItemsSource = null;
@@ -79,11 +82,15 @@ namespace PersonaCal
 
         private void BtnClear_Click(object sender, RoutedEventArgs e)
         {
+            //Clears results for new selection
             lbxResults.ItemsSource = null;
         }
+        #endregion
 
+        #region SEARCH LOGIC
         private void TbxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
+            //Search by name or arcana, name by default
             if(cbxSearchType.SelectedIndex == 0)
             {
                 lbxChild.ItemsSource = null;
@@ -107,5 +114,6 @@ namespace PersonaCal
             lbxChild.ItemsSource = masterList;
             tbxSearch.Clear();
         }
+        #endregion
     }
 }
