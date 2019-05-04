@@ -83,9 +83,12 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Name="btnCalculate" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="1"
+        <Button Name="btnCalculate" Grid.Column="4" Grid.ColumnSpan="1" Grid.Row="1"
                 HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="25"
                 Content="CALCULATE" Click="BtnCalculate_Click"  Background="Orange" />
+        <Button Name="btnAddToTeam" Grid.Column="5" Grid.ColumnSpan="1" Grid.Row="1"
+                HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="25"
+                Content="ADD TO TEAM" Click="BtnAddToTeam_Click"  Background="Orange" />
         <TextBlock Name="tbkResult" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="2" 
                    Margin="5" Background="Black" Foreground="White" />
         <!--#endregion-->

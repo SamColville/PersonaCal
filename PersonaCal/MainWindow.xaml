@@ -37,6 +37,8 @@
         <Button Name="btnExit" Grid.Column="5" Grid.Row="0" Background="Crimson" Margin="10" 
                 FontSize="12" FontWeight="SemiBold" Click="BtnExit_Click" Height="40">EXIT</Button>
         <Image Source="Images/persona_4_Main.jpg" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="2"/>
+        <Button Name="btnShowTeam" Grid.Row="5" Grid.Column="5" Margin="10" Background="Crimson"
+                FontSize="12" FontWeight="SemiBold" Click="BtnShowTeam_Click" Height="40">TEAM</Button>
         <!-- 
         <ListBox Name="lbxPersonaOne" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2" Background="Black"
                  Margin="5" Foreground="White"/>

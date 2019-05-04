@@ -24,7 +24,7 @@ namespace PersonaCal
     {
         public PersonasContainers db = new PersonasContainers();
         public static string[] sortBy = { "Name", "Arcana" };
-
+        public static List<Persona> teamList = new List<Persona>();
         public static int[,] ResultKeys = new int[,]
         {
             {1,15,14,19,14,8,4,20,2,12,2,2,12,10,6,15,18,4,5,16,13},
@@ -61,10 +61,9 @@ namespace PersonaCal
             //placeHoldText = "Press CALCULATE after selecting\n1. 1 Persona from column 1\n2. Persona from Column 2";
             //errorText = "Please select two Personas: \n1. 1 Persona from column 1\n2. Persona from Column 2";
             //tbkResult.Text = placeHoldText;
-            
         }
 
-
+        #region NAV BUTTONS
         private void BtnSearch_Click(object sender, RoutedEventArgs e)
         {
             SearchWindow searchWindow = new SearchWindow
@@ -97,21 +96,15 @@ namespace PersonaCal
             buildWindow.ShowDialog();
         }
 
-        //private void BtnCalculate_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Persona p1 = lbxPersonaOne.SelectedItem as Persona;
-        //    Persona p2 = lbxPersonaTwo.SelectedItem as Persona;
-        //    FusionResult Fusion;
-        //    Persona Result;
-        //    if (lbxPersonaOne.SelectedItem != null && lbxPersonaTwo.SelectedItem != null)
-        //    {
-        //        Fusion = new FusionResult(p1, p2);
-        //        Result = Fusion.CheckPersonaResult(p1, p2);
-        //        tbkResult.Text = Result.ToString();
-        //    }
-        //    else
-        //        tbkResult.Text = errorText;
+        #endregion
 
-        //}
+        private void BtnShowTeam_Click(object sender, RoutedEventArgs e)
+        {
+            TeamView teamView = new TeamView
+            {
+                Owner = this
+            };
+            teamView.ShowDialog();
+        }
     }
 }

@@ -23,14 +23,13 @@ namespace PersonaCal
         public PersonasContainers db = new PersonasContainers();
         public List<Persona> masterList;
         public List<Persona> personaOneList;
-        public List<Persona> teamList;
 
         public BuildWindow()
         {
             InitializeComponent();
             masterList = db.Personas.ToList();
             lbxTeamSelect.ItemsSource = masterList;
-            teamList = new List<Persona>();
+            MainWindow.teamList = new List<Persona>();
             cbxSearchType.ItemsSource = MainWindow.sortBy;
             cbxSearchType.SelectedIndex = 0;
         }
@@ -71,12 +70,12 @@ namespace PersonaCal
             if(lbxTeamSelect.SelectedItem != null)
             {
                 //Max of 8 personas in a team
-                if(teamList.Count < 8)
+                if(MainWindow.teamList.Count < 8)
                 {
-                    teamList.Add(lbxTeamSelect.SelectedItem as Persona);
+                    MainWindow.teamList.Add(lbxTeamSelect.SelectedItem as Persona);
                     //displays selected personas in listbox
                     lbxTeam.ItemsSource = null;
-                    lbxTeam.ItemsSource = teamList;
+                    lbxTeam.ItemsSource = MainWindow.teamList;
                 }
                 else
                 {
@@ -91,9 +90,9 @@ namespace PersonaCal
             //Remove a persona from team
             if(lbxTeam.SelectedItem != null)
             {
-                teamList.Remove(lbxTeam.SelectedItem as Persona);
+                MainWindow.teamList.Remove(lbxTeam.SelectedItem as Persona);
                 lbxTeam.ItemsSource = null;
-                lbxTeam.ItemsSource = teamList;
+                lbxTeam.ItemsSource = MainWindow.teamList;
             }
         }
         #endregion NAV BUTTONS
@@ -102,7 +101,7 @@ namespace PersonaCal
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             string json = JsonConvert.SerializeObject(
-                                                    teamList, Formatting.Indented, 
+                                                    MainWindow.teamList, Formatting.Indented, 
                                                     new JsonSerializerSettings()
                                                     {
                                                         //Since arcana is an object that Persona has
@@ -139,13 +138,13 @@ namespace PersonaCal
                 using (StreamReader sr = new StreamReader(fileName))
                 {
                     string json = sr.ReadToEnd();
-                    teamList.Clear();
-                    teamList = JsonConvert.DeserializeObject<List<Persona>>(json);
+                    MainWindow.teamList.Clear();
+                    MainWindow.teamList = JsonConvert.DeserializeObject<List<Persona>>(json);
                 }
             }
             //reset team listbox 
             lbxTeam.ItemsSource = null;
-            lbxTeam.ItemsSource = teamList;
+            lbxTeam.ItemsSource = MainWindow.teamList;
         }
         #endregion
 

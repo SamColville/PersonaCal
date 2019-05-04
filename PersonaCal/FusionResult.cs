@@ -25,10 +25,16 @@ namespace PersonaCal
         {
             //Check arcana of child
             Arcana ResultArc = CheckArcana();
-
+            Persona emptyResult = new Persona
+            {
+                Arcana_Id = 1002
+            };
             //if 'empty' arcana is returnes, no personas will be selected
             //otherwise, select only personas of child arcana
             var arcanaQuery = DB.Personas.Where(p => p.Arcana.Id == ResultArc.Id);
+            
+            if (arcanaQuery.Count() == 0)
+                return emptyResult;
 
             //child persona's level will be the 'next up'
             //ie if average is 35, the child persona will have 
@@ -39,7 +45,6 @@ namespace PersonaCal
             //find all personas of levels >= average, and select the first
             //Personas are sorted by arcana then level in db
             var Result = arcanaQuery.Where(p => p.Level >= levelAverage).First();
-            
             return Result as Persona;
         }
 
@@ -47,14 +52,17 @@ namespace PersonaCal
         {
             //use arcana id of parents to obtain key of child arcana
             int resultKey = ResultKeys[(Parent1.Arcana.Id - 1), (Parent2.Arcana.Id - 1)];
-            if (resultKey == 0)
+            switch (resultKey)
             {
-                //some fusions are not possible, this returns an 'empty' arcana
-                return DB.Arcanas.Where(k => k.Id == 1002).First();
-            }
-            else
-            {
-                return DB.Arcanas.Where(k => k.Id == resultKey).First();
+                case 0:
+                    {
+                        //some fusions are not possible, this returns an 'empty' arcana
+                        return DB.Arcanas.Where(k => k.Id == 1002).First();
+                    }
+                default:
+                    {
+                        return DB.Arcanas.Where(k => k.Id == resultKey).First();
+                    }
             }
         }
     }

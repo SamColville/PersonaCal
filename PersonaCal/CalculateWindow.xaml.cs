@@ -22,6 +22,7 @@ namespace PersonaCal
     {
         public PersonasContainers db = new PersonasContainers();
         public List<Persona> masterList;
+        public Persona Result;
         string placeHoldText;
         string errorText;
 
@@ -49,7 +50,6 @@ namespace PersonaCal
             Persona p1 = lbxPersonaOne.SelectedItem as Persona;
             Persona p2 = lbxPersonaTwo.SelectedItem as Persona;
             FusionResult Fusion;
-            Persona Result;
             //check valid selections from both listboxes
             if (lbxPersonaOne.SelectedItem != null && lbxPersonaTwo.SelectedItem != null)
             {
@@ -146,7 +146,23 @@ namespace PersonaCal
         {
             tbxSearchTwo.Clear();
         }
-        #endregion 
+        #endregion
 
+        private void BtnAddToTeam_Click(object sender, RoutedEventArgs e)
+        {
+            if (tbkResult.Text.Contains(placeHoldText) || tbkResult.Text.Contains(errorText))
+                MessageBox.Show("Please make a fusion to add to team.", "Calculator", MessageBoxButton.OK);
+            else if(tbkResult.Text.Contains("Fusion not possible"))
+            {
+                MessageBox.Show("This fusion is not possible.\nPlease try a new fusion.", "Calculator", MessageBoxButton.OK);
+            }
+            else
+            {
+                if(Result != null)
+                    MainWindow.teamList.Add(Result);
+                else
+                    MessageBox.Show("Please make a fusion to add to team.", "Calculator", MessageBoxButton.OK);
+            }
+        }
     }
 }
