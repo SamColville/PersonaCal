@@ -164,5 +164,14 @@ namespace PersonaCal
                     MessageBox.Show("Please make a fusion to add to team.", "Calculator", MessageBoxButton.OK);
             }
         }
+
+        private void BtnShowTeam_Click(object sender, RoutedEventArgs e)
+        {
+            TeamView teamView = new TeamView
+            {
+                Owner = this
+            };
+            teamView.ShowDialog();
+        }
     }
 }

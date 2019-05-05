@@ -30,6 +30,24 @@ namespace PersonaCal
             lbxChild.ItemsSource = masterList;
             cbxSearchType.ItemsSource = MainWindow.sortBy;
             cbxSearchType.SelectedIndex = 0;
+            if (TeamView.selectedPersona != null)
+            {
+                switch (cbxSearchType.SelectedIndex)
+                {
+                    case 0:
+                        {
+                            tbxSearch.Text = TeamView.selectedPersona.Name;
+                            break;
+                        }
+
+                    case 1:
+                        {
+                            tbxSearch.Text = TeamView.selectedPersona.Arcana.ArcanaName;
+                            break;
+                        }
+
+                }
+            }
         }
 
         #region NAV BUTTONS
@@ -91,20 +109,25 @@ namespace PersonaCal
         private void TbxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             //Search by name or arcana, name by default
-            if(cbxSearchType.SelectedIndex == 0)
+            switch (cbxSearchType.SelectedIndex)
             {
-                lbxChild.ItemsSource = null;
-                string search = tbxSearch.Text.ToLower();
-                var filterList = masterList.Where(p => p.Name.ToLower().Contains(search));
-                lbxChild.ItemsSource = filterList.ToList();
-            }
-            else if(cbxSearchType.SelectedIndex == 1)
-            {
-                lbxChild.ItemsSource = null;
-                string search = tbxSearch.Text.ToLower();
-                var filterList = masterList.Where(p => p.Arcana.ArcanaName.ToLower().Contains(search));
-                lbxChild.ItemsSource = filterList.ToList();
+                case 0:
+                    {
+                        lbxChild.ItemsSource = null;
+                        string search = tbxSearch.Text.ToLower();
+                        var filterList = masterList.Where(p => p.Name.ToLower().Contains(search));
+                        lbxChild.ItemsSource = filterList.ToList();
+                        break;
+                    }
 
+                case 1:
+                    {
+                        lbxChild.ItemsSource = null;
+                        string search = tbxSearch.Text.ToLower();
+                        var filterList = masterList.Where(p => p.Arcana.ArcanaName.ToLower().Contains(search));
+                        lbxChild.ItemsSource = filterList.ToList();
+                        break;
+                    }
             }
         }
 
@@ -115,5 +138,14 @@ namespace PersonaCal
             tbxSearch.Clear();
         }
         #endregion
+
+        private void BtnShowTeam_Click(object sender, RoutedEventArgs e)
+        {
+            TeamView teamView = new TeamView
+            {
+                Owner = this
+            };
+            teamView.ShowDialog();
+        }
     }
 }

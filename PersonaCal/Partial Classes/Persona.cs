@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace PersonaCal
 {
-    public partial class Persona
+    public partial class Persona : IComparable
     {
+        public int CompareTo(object obj)
+        {
+            Persona that = (Persona)obj;
+            return Id.CompareTo(that.Id);
+        }
+
         public override string ToString()
         {
             if (Arcana_Id == 1002)

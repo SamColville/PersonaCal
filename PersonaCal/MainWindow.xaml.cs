@@ -55,15 +55,18 @@ namespace PersonaCal
         public MainWindow()
         {
             InitializeComponent();
-            //var personaOneList = db.Personas.ToList();
-            //lbxPersonaOne.ItemsSource = personaOneList;
-            //lbxPersonaTwo.ItemsSource = personaOneList;
-            //placeHoldText = "Press CALCULATE after selecting\n1. 1 Persona from column 1\n2. Persona from Column 2";
-            //errorText = "Please select two Personas: \n1. 1 Persona from column 1\n2. Persona from Column 2";
-            //tbkResult.Text = placeHoldText;
         }
 
         #region NAV BUTTONS
+        private void BtnBuild_Click(object sender, RoutedEventArgs e)
+        {
+            BuildWindow buildWindow = new BuildWindow
+            {
+                Owner = this
+            };
+            buildWindow.ShowDialog();
+        }
+
         private void BtnSearch_Click(object sender, RoutedEventArgs e)
         {
             SearchWindow searchWindow = new SearchWindow
@@ -86,16 +89,6 @@ namespace PersonaCal
         {
             Close();
         }
-
-        private void BtnBuild_Click(object sender, RoutedEventArgs e)
-        {
-            BuildWindow buildWindow = new BuildWindow
-            {
-                Owner = this
-            };
-            buildWindow.ShowDialog();
-        }
-
         #endregion
 
         private void BtnShowTeam_Click(object sender, RoutedEventArgs e)

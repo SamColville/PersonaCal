@@ -69,20 +69,42 @@ namespace PersonaCal
             //Check selection is not null
             if(lbxTeamSelect.SelectedItem != null)
             {
-                //Max of 8 personas in a team
-                if(MainWindow.teamList.Count < 8)
+                //Check if Persona is already in list and notify user to select a different one.
+                if(CheckDuplicate(lbxTeamSelect.SelectedItem as Persona))
                 {
-                    MainWindow.teamList.Add(lbxTeamSelect.SelectedItem as Persona);
-                    //displays selected personas in listbox
-                    lbxTeam.ItemsSource = null;
-                    lbxTeam.ItemsSource = MainWindow.teamList;
+                    MessageBox.Show("That Persona is already in your team.\nPlease choose a different Persona.");
                 }
                 else
                 {
-                    MessageBox.Show("Max 8 Personas per team.\nPlease remove 1 or more to add this selection.",
-                                    "Team Builder", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    //Max of 8 personas in a team
+                    if(MainWindow.teamList.Count < 8)
+                    {
+                        MainWindow.teamList.Add(lbxTeamSelect.SelectedItem as Persona);
+                        //displays selected personas in listbox
+                        lbxTeam.ItemsSource = null;
+                        MainWindow.teamList.Sort();
+                        lbxTeam.ItemsSource = MainWindow.teamList;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Max 8 Personas per team.\nPlease remove 1 or more to add this selection.",
+                                        "Team Builder", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    }
                 }
             }
+        }
+
+        private bool CheckDuplicate(Persona p1)
+        {
+            bool isDuplicate = false;
+            foreach (var per in MainWindow.teamList)
+            {
+                if (per.Id == p1.Id)
+                    return isDuplicate = true;
+                else
+                    isDuplicate = false;
+            }
+            return isDuplicate;
         }
 
         private void BtnRemove_Click(object sender, RoutedEventArgs e)
